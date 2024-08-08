@@ -13,7 +13,7 @@ class Game:
         self.batt = Batt(WIDTH // 2, HEIGHT * 0.95)
         self.ball = Ball(WIDTH // 2, HEIGHT * 0.8)
         self.game_surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA) 
-        self.game_background = scale_sprite(load_sprite("/home/timon/Загрузки/b.jpg"), WIDTH, HEIGHT)
+        self.game_background = scale_sprite(load_sprite("../res/img/background.jpg"), WIDTH, HEIGHT)
         self.pause = False
 
         self.clock = pygame.time.Clock()
