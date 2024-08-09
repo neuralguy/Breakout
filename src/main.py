@@ -1,5 +1,6 @@
 import pygame
 import asyncio
+from ui_manager import UI
 from batt import Batt
 from ball import Ball
 from brick import create_bricks
@@ -10,9 +11,11 @@ from helper import *
 class Game:
     def __init__(self):
         pygame.init()
+        self.ui = UI()
+        self.ui.create_menu()
         self.batt = Batt(WIDTH // 2, HEIGHT * 0.95)
         self.ball = Ball(WIDTH // 2, HEIGHT * 0.8)
-        self.game_surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA) 
+        self.game_surface = pygame.Surface((WIDTH, HEIGHT)).convert()
         self.game_background = scale_sprite(load_sprite("../res/img/background.jpg"), WIDTH, HEIGHT)
         self.pause = False
 
@@ -34,7 +37,7 @@ class Game:
         self.bricks = pygame.sprite.Group()
         create_bricks(self.brick_map, self.bricks)
 
-    def mainloop(self):
+    def game_loop(self):
         while True:
             for event in pygame.event.get():
                 self.handle_event(event)
@@ -85,7 +88,10 @@ class Game:
         if not self.ball.is_launched():
             draw_text(self.game_surface, "PRESS ENTER TO START", (WIDTH // 10, HEIGHT // 6), 45)
 
+        self.ui.draw_ui(self.game_surface)
+
         SCREEN.blit(self.game_surface, (0,0))
+
         pygame.display.update()
 
     def process_objects(self):
@@ -117,4 +123,4 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
-    game.mainloop()
+    game.game_loop()

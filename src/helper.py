@@ -2,17 +2,17 @@ import pygame
 
 
 def load_sprite(path:str) -> pygame.surface.Surface:
-    return pygame.image.load(path)
+    return pygame.image.load(path).convert_alpha()
 
 def scale_sprite(sprite:pygame.surface.Surface, width:int, height:int) -> pygame.surface.Surface:
-    return pygame.transform.scale(sprite, (width, height))
+    return pygame.transform.scale(sprite, (width, height)).convert_alpha()
 
 def crop_sprite(sprite:pygame.surface.Surface, x:int, y:int, width:int, height:int) -> pygame.surface.Surface:
-    return sprite.subsurface((x, y, width, height))
+    return sprite.subsurface((x, y, width, height)).convert_alpha()
 
 def draw_text(surface:pygame.surface.Surface, text:str, position:tuple[int,int]|list[int,int], font_size:int=16):
     font = pygame.font.Font("freesansbold.ttf", font_size)
-    text = font.render(text, False, "white")
+    text = font.render(text, True, "white")
     surface.blit(text, position)
 
 class TimerManager:
