@@ -11,3 +11,31 @@
 - ***pip install -r requirements.txt(if it doesn't work then try pip3 instead)***
 - ***cd src***
 - ***python(or python3) main.py***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+всё равно никто даже не увидит этот репозиторий 
