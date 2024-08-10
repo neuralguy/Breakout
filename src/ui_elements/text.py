@@ -18,8 +18,7 @@ class Text:
 
 		self.__font = pygame.font.Font(font_path, font_size)
 		self.__render = self.__font.render(text, antialias, text_color).convert_alpha()
-		# self.__render.set_alpha(self.__text_alpha)
-
+		
 		self.__width = self.__render.get_width()
 		self.__height = self.__render.get_height()
 		self.__x = x - self.__width // 2

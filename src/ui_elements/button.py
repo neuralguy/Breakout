@@ -10,19 +10,24 @@ class Button(Text):
 			callback: callable, 
 			width: int=-1, 
 			height: int=-1,
+			h_padding=30,
+			v_padding=5,
 			text_color: tuple[int,int,int]|list[int,int,int]|str="white", 
-			text_alpha: int=0,
+			text_alpha: int=255,
 			font_size: int=16, 
 			font_path: str="freesansbold.ttf", 
-			antialias: bool=False,
-			background_color: tuple[int,int,int]|list[int,int,int]|str="gray", 
-			background_alpha: int=255
+			antialias: bool=True,
+			background_color: tuple[int,int,int]|list[int,int,int]|str="black", 
+			background_alpha: int=0
 			) -> None:
 		super().__init__(x, y, text, text_color,  text_alpha, font_size,  font_path,  antialias)
 
 		self.__callback = callback
-		self.__width = width if width != -1 else self.get_width() + 20
-		self.__height = height if height != -1 else self.get_height()
+		self.__width = width if width != -1 else self.get_width() + h_padding * 2
+		self.__height = height if height != -1 else self.get_height() + v_padding * 2
+
+		self.__h_padding = h_padding
+		self.__v_padding = v_padding
 
 		self.__background_color = background_color
 		self.__background_alpha = background_alpha
@@ -33,7 +38,8 @@ class Button(Text):
 		self.__callback()
 
 	def draw(self, surface:pygame.surface.Surface) -> None:
-		surface.blit(self.__background_surface, self.get_pos())
+		x, y = self.get_pos()
+		surface.blit(self.__background_surface, (x - self.__h_padding, y - self.__v_padding))
 		surface.blit(self.get_render(), self.get_pos())
 
 	def update_background(self):

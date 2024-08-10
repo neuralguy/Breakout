@@ -12,7 +12,6 @@ class Game:
     def __init__(self):
         pygame.init()
         self.ui = UI()
-        self.ui.create_menu()
         self.batt = Batt(WIDTH // 2, HEIGHT * 0.95)
         self.ball = Ball(WIDTH // 2, HEIGHT * 0.8)
         self.game_surface = pygame.Surface((WIDTH, HEIGHT)).convert()
@@ -119,6 +118,11 @@ class Game:
 
     def game_over(self):
         pass
+
+    def ui_loop(self):
+        while True:
+            for event in pygame.event.get():
+                self.ui.handle_event(event)
 
 
 if __name__ == "__main__":
